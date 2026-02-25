@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab-service
+  namespace: codeparce-devops
+spec:
+  selector:
+    app: gitlab
+  ports:
+    - name: http       # 🔹 nombre obligatorio y único
+      port: 80
+      targetPort: 80
+    - name: https
+      port: 443
+      targetPort: 443
+    - name: ssh
+      port: 2222
+      targetPort: 2222
+  type: ClusterIP
