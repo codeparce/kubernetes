@@ -12,8 +12,8 @@ data:
     prometheus_monitoring['enable'] = false
     gitlab_rails['gitlab_shell_ssh_port'] = 2222
 
-    registry_external_url 'https://registry.gitlab.codeparce'
-    gitlab_rails['registry_enabled'] = true
+    #registry_external_url 'https://registry.gitlab.codeparce'
+    #gitlab_rails['registry_enabled'] = true
 
     ### GitLab email server settings
     ###! Docs: https://docs.gitlab.com/omnibus/settings/smtp.html
