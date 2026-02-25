@@ -1,0 +1,6 @@
+namespace: monitoring
+
+ingress:
+  host: monitoring.codeparce
+
+#argoscd monitoring
