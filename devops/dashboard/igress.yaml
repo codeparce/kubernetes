@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: monitoring-grafana-ingress
+  namespace: monitoring
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`grafana.codeparce`)
+      kind: Rule
+      services:
+        - name: monitoring-grafana
+          port: 80

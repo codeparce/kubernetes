@@ -1,41 +1,40 @@
-# Instalar el dashborad de kubernetes 
 
-```bash 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+# Helm
 
-kubectl get pods -n kubernetes-dashboard
-```
-
-#### Creacion de usuario para el dashboard
+**APPS utiles**
 
 ```bash
-cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: admin-user
-  namespace: kubernetes-dashboard
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: admin-user
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: admin-user
-  namespace: kubernetes-dashboard
-EOF
 
-## Crear token
-kubectl -n kubernetes-dashboard create token admin-user 
+https://kubernetes-sigs.github.io/headlamp/
 
-## Exponer servicio
-kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard 10443:443 --address 0.0.0.0 --insecure-skip-tls-verify=true
+https://argoproj.github.io/argo-helm
 
+https://prometheus-community.github.io/helm-charts
+```
+
+## Instalar repos o aplicaciones
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+kubectl create namespace example
+
+helm install example prometheus-community/kube-prometheus-stack--namespace example
+
+#Plantilla para exponer el servicio por loadbalancer 80 con traefik
+kubectl apply -f ./igress.yaml
+
+# comandos utiles
+helm repo list
+helm search repo prometheus
+```
+
+
+# Instalar el dashborad de kubernetes Nativo
+
+```bash 
+kube_dashboard_nativo.sh
 
 ## cambiar de propiedad
 sudo chown -R vagrant:vagrant ./kubernetes ./.kube
@@ -49,5 +48,4 @@ kubectl delete all --all -n kubernetes-dashboard
 
 sudo ss -tulnp
 ```
-
 
