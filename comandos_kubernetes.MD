@@ -21,10 +21,9 @@ kubectl describe service <name_service>
 minikube service --url <name_service>
 ```
 
-
 ## Crear y eliminar soluciones
 
-dentro de la carpeta donde tienes tus archivoz .yml realizar estos comandos 
+dentro de la carpeta donde tienes tus archivos .yml realizar estos comandos 
 
 ```bash
 kubectl apply -f ./ OR ./name_file
@@ -44,8 +43,6 @@ Si tiene establecido un name space por defecto no se coloca el flag -n
 ```bash 
 kubectl exec -it gitlab-deployment-77f476f7d8-8g545 -n codeparce-devops -- bash
 ```
-
-
 
 # Cluester info
 
