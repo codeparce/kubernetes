@@ -37,3 +37,5 @@ kubectl -n kubernetes-dashboard create token admin-user
 kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard 10443:443 --address 0.0.0.0 --insecure-skip-tls-verify=true
 
 ```
+
+

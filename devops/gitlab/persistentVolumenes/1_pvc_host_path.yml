@@ -4,12 +4,13 @@ metadata:
   name: gitlab-config-pvc
   namespace: codeparce-devops
 spec:
-  volumeName: gitlab-config-pv
+  storageClassName: local-path
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 10Gi
+  volumeName: gitlab-config-pv
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -17,9 +18,10 @@ metadata:
   name: gitlab-data-pvc
   namespace: codeparce-devops
 spec:
-  volumeName: gitlab-data-pv
+  storageClassName: local-path
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 10Gi
+  volumeName: gitlab-data-pv
