@@ -36,6 +36,18 @@ kubectl -n kubernetes-dashboard create token admin-user
 ## Exponer servicio
 kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard 10443:443 --address 0.0.0.0 --insecure-skip-tls-verify=true
 
+
+## cambiar de propiedad
+sudo chown -R vagrant:vagrant ./kubernetes ./.kube
+sudo chmod -R 777 kube_dashboard.sh
+
+## para el puerto ocupado
+sudo lsof -i :10443
+sudo kill -9 27329
+
+kubectl delete all --all -n kubernetes-dashboard 
+
+sudo ss -tulnp
 ```
 
 

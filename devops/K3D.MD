@@ -3,7 +3,7 @@
 ## Crear el cluster con loadbalancer
 
 ```bash 
-k3d cluster create dev --servers 1 --agents 1  -p "80:80@loadbalancer" -p "8080:8080@loadbalancer"  -v /srv/gitlab:/mnt/gitlab@server:0 
+k3d cluster create dev --servers 1 --agents 1  -p "80:80@loadbalancer" -p "8080:8080@loadbalancer" -v /srv/gitlab:/mnt/gitlab@server:0 
 
 kubectl get nodes
 ```

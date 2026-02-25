@@ -38,8 +38,10 @@ kubectl -n kubernetes-dashboard create token admin-user > admin.txt
 echo "Token guardado en admin.txt"
 
 # 4️⃣ Levantar el port-forward en segundo plano
-nohup kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard 10443:443 \
-  --address 0.0.0.0 --insecure-skip-tls-verify=true > dashboard.log 2>&1 &
+# nohup kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard 10443:443 \
+#   --address 0.0.0.0 --insecure-skip-tls-verify=true > dashboard.log 2>&1 &
+
+nohup kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard 10443:443 > dashboard.log 2>&1 &
 
 echo "Dashboard corriendo en https://localhost:10443 (port-forward en segundo plano)" 
 echo "Logs del port-forward en dashboard.log" 
