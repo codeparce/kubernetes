@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab-deployment
+  namespace: codeparce-devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitlab
+  template:
+    metadata:
+      labels:
+        app: gitlab
+    spec:
+      containers:
+        - name: gitlab
+          image: gitlab/gitlab-ee:17.9.2-ee.0  
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+            - containerPort: 2222
+          resources:
+            limits:
+              cpu: "2"
+              memory: "4Gi"      
+            requests:
+              cpu: "1"
+              memory: "3Gi"
+
+
+          volumeMounts:
+            - name: gitlab-data-vol
+              mountPath: /var/opt/gitlab
+
+            # - name: gitlab-config-vol
+            #   mountPath: /etc/gitlab
+
+            - name: gitlab-configmap-vol
+              mountPath: /etc/gitlab/gitlab.rb
+              subPath: gitlab.rb   # Sobrescribe el archivo con el ConfigMap
+  
+      volumes:
+        - name: gitlab-data-vol
+          persistentVolumeClaim:
+            claimName: gitlab-nfs-pvc
+
+        - name: gitlab-config-vol
+          persistentVolumeClaim:
+            claimName: gitlab-nfs-pvc
+
+        - name: gitlab-configmap-vol
+          configMap:
+            name: gitlab-config-map
+            items:
+              - key: gitlab.rb
+                path: gitlab.rb
