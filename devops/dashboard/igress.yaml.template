@@ -1,16 +1,16 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: "prometheus-ingress"
-  namespace: prometheus
+  name: "${NAME}-ingress"
+  namespace: ${NAMESPACE}
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`prometheus.codeparce`)
+    - match: Host(`${DOMINE}`)
       kind: Rule
       services:
-        - name: prometheus-grafana 
+        - name: ${SERVICE}
           port: 80
