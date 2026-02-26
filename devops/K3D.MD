@@ -4,13 +4,11 @@
 
 ```bash 
 k3d cluster create dev \
-  --servers 1 \
-  --agents 1 \
-  --servers-memory 2g \
-  --agents-memory 2g \
-  --servers-cpu 1 \
-  --agents-cpu 2 \
-  \ -v /srv/gitlab:/mnt/gitlab@server:0 
+  --servers 1 --agents 1 \
+  --servers-memory 2g --agents-memory 2g \
+  --servers-cpu 1 --agents-cpu 2 \
+  -p "80:80@loadbalancer" -p "8080:8080@loadbalancer" \ 
+  -v /srv/gitlab:/mnt/gitlab@server:0 
 
 kubectl get nodes
 ```
