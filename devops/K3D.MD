@@ -11,6 +11,7 @@ k3d cluster create dev \
   -v /srv/gitlab:/mnt/gitlab@server:0 
 
 kubectl get nodes
+
 ```
 
 ```bash 
