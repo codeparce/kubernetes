@@ -1,6 +1,13 @@
 
 # Helm
 
+```bash
+# comandos utiles
+helm repo list
+helm search repo prometheus
+```
+
+
 **APPS utiles**
 
 ```bash
@@ -16,43 +23,32 @@ https://prometheus-community.github.io/helm-charts
 ## Instalar repos o aplicaciones
 
 ```bash
-helm repo add prometheus https://prometheus-community.github.io/helm-charts
+helm repo add monitoring https://prometheus-community.github.io/helm-charts
+
 helm repo update
 
-helm search repo prometheus
+helm search repo monitoring
 
-kubectl create namespace prometheus
+kubectl create namespace monitoring
 
-helm install prometheus prometheus/kube-prometheus-stack  --namespace prometheus
+helm install monitoring monitoring/kube-prometheus-stack  --namespace monitoring
 
-export SERVICE=$(kubectl get service --namespace headlamp -l "app.kubernetes.io/name=headlamp,app.kubernetes.io/instance=headlamp" -o jsonpath="{.items[0].metadata.name}")
+## SE OBTIENE EL NOMBRE DEL SERIVICIO
+kubectl get service --namespace monitoring | grep grafana
+## SE ACTAULIZA EL .ENV
 
-envsubst < igress.yaml.template > igress.yaml
+envsubst < igress.template > igress.yaml
 
 #Plantilla para exponer el servicio por loadbalancer 80 con traefik
 kubectl apply -f ./igress.yaml
-
-# comandos utiles
-helm repo list
-helm search repo prometheus
 ```
 
+## Comandos para obtener las keys
 
-# Instalar el dashborad de kubernetes Nativo
+```bash
+kubectl create token headlamp --namespace headlamp 
 
-```bash 
-kube_dashboard_nativo.sh
+kubectl -n argocd get secret argocd-initial-admin-secret  -o jsonpath="{.data.password}" | base64 -d && echo
 
-## cambiar de propiedad
-sudo chown -R vagrant:vagrant ./kubernetes ./.kube
-sudo chmod -R 777 kube_dashboard.sh
-
-## para el puerto ocupado
-sudo lsof -i :10443
-sudo kill -9 27329
-
-kubectl delete all --all -n kubernetes-dashboard 
-
-sudo ss -tulnp
+kubectl --namespace monitoring get secrets monitoring-grafana -o jsonpath="{.data}" | base64 -d ; echo
 ```
-

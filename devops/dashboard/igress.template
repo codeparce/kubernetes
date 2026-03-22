@@ -1,16 +1,16 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: pgadmin-ingress
-  namespace: sasf-qa
+  name: "${NAME}-ingress"
+  namespace: ${NAMESPACE}
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`pgadmin.codeparce`)
+    - match: Host(`${DOMAIN}`)
       kind: Rule
       services:
-        - name: pgadmin-service
+        - name: ${SERVICE}
           port: 80
