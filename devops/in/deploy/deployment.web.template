@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${NAME}-deployment
+  namespace: ${NAMESPACE}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${NAME}
+  template:
+    metadata:
+      labels:
+        app: ${NAME}
+    spec:
+      containers:
+        - name: ${NAME}
+          image: ${IMAGE}
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          resources:
+            limits:
+              cpu: "${CPU}"
+              memory: "${MEMORY}"
+            requests:
+              cpu: "${CPU}"
+              memory: "${MEMORY}"
+          volumeMounts:
+            - name: ${NAME}-data-vol
+              mountPath: ${MOUNT_PATH}
+
+
+      volumes:
+        - name: ${NAME}-data-vol
+          persistentVolumeClaim:
+            claimName: ${NAME}-data-pvc
+
