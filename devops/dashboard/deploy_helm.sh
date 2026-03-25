@@ -3,7 +3,9 @@ set -e
 
 pwd
 
+set -a
 source .env
+set +a
 
 envsubst < igress.template > igress.yaml
 
