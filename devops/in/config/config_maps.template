@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${NAME}-config-map
+  namespace: ${NAMESPACE}
+data:
+   ${CONFIG_FILE}: |
+    ${CONFIG}
+
+

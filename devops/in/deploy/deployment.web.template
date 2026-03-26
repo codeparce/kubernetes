@@ -30,9 +30,19 @@ spec:
             - name: ${NAME}-data-vol
               mountPath: ${MOUNT_PATH}
 
+            - name: ${NAME}-configmap-vol
+              mountPath: ${CONFIG_PATH}/${CONFIG_FILE}
+              subPath: ${CONFIG_FILE}
 
       volumes:
         - name: ${NAME}-data-vol
           persistentVolumeClaim:
             claimName: ${NAME}-data-pvc
+
+        - name: ${NAME}-configmap-vol
+          configMap:
+            name: ${NAME}-config-map
+            items:
+              - key: ${CONFIG_FILE}
+                path: ${CONFIG_FILE}
 
