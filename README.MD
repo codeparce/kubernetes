@@ -4,7 +4,8 @@
  si quieres que la vm ya tenga todo instalado incluso que te cree un cluster con loadbalancer mira el repo de [Ansible el proyecto k8s](https://github.com/codeparce/ansible) aqui esta la automatizacion para ahorra tiempo
 
 
-### Pasos previio
+### Pasos previos
+
 **Instalar** docker y realizar el control de logs etc
 
 - [Instalar docker](https://docs.docker.com/engine/install/ubuntu/)
