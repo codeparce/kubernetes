@@ -3,3 +3,5 @@ admin.txt
 nfs-share
 
 backup/
+
+.kube*

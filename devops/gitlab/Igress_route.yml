@@ -2,15 +2,24 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: gitlab-ingress
-  namespace: codeparce-devops
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
+  namespace: gitlab
+  labels:
+    name: devops
+
 spec:
   entryPoints:
-    - web
+    - web #80
   routes:
+    # GitLab Web UI
     - match: Host(`gitlab.codeparce`)
       kind: Rule
       services:
         - name: gitlab-service
           port: 80
+
+    # GitLab Container Registry
+    - match: Host(`registry.gitlab.codeparce`)
+      kind: Rule
+      services:
+        - name: gitlab-service
+          port: 5000
