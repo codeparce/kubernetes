@@ -26,4 +26,4 @@ sudo systemctl status ssh
 
 ### [Iniciar con K3D](./k3d.md)
 
-### [Iniciar con K3D](./minikube.md)
+### [Iniciar con minikube](./minikube.md)
