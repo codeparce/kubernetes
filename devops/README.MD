@@ -51,3 +51,15 @@ kubectl --namespace prometheus get secrets prometheus-grafana -o jsonpath="{.dat
 
 kubectl --namespace monitoring get secrets monitoring-grafana -o jsonpath="{.data}" | base64 -d ; echo
 ```
+
+### Vault 
+
+Entrar al pod y ejecutar los comandos para inizialziar 
+```bash
+# validate
+vault status
+# init
+vault operator init
+# enviar tres claves del output
+vault operator unseal
+```

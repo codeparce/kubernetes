@@ -14,8 +14,8 @@ k3d version
 ```bash 
 k3d cluster create dev \
   --servers 1 --agents 1 \
-  -p "80:80@loadbalancer" -p "8080:8080@loadbalancer"  -p "5050:5050@loadbalancer"\ 
-  -v /srv:/mnt@all
+  -p "80:80@loadbalancer" -p "8080:8080@loadbalancer"  -p "443:443@loadbalancer" \ 
+  #-v /srv:/mnt@all
   #--servers-memory 3g --agents-memory 3g \
   #--servers-cpu 1 --agents-cpu 2 \
 ```
