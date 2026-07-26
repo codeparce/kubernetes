@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "argos-dashboard-ingress" 
+  namespace: argo-rollouts
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`arg-rollout.lab`)
+      kind: Rule
+      services:
+        - name: argo-argo-rollouts-dashboard
+          port: 3100

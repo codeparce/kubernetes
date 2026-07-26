@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: test
+---
+# Name app: my-app-example
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "my-app-example-ingress" 
+  namespace: test
+  labels:
+    namespace: test
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`example.lab`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: my-app-example-svc
+          port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-example-svc
+  namespace: test
+spec:
+  ports:
+    - name: stable        
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-example-pws-svc
+  namespace: test
+  labels:
+    namespace: test
+spec:
+  ports:
+    - name: preview         # 🔹 nombre obligatorio y único
+      port: 80
+      targetPort: 80
+  type: ClusterIP

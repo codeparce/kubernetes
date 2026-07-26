@@ -12,18 +12,25 @@
 - [Control de logs](https://docs.docker.com/engine/logging/configure/) 
 
 ### Instalar actualizaciones y deps
+
 ```bash 
 sudo apt update
 sudo apt install -y curl ca-certificates gnupg lsb-release apt-transport-https openssh-server
 sudo systemctl status ssh
 ```
 
-## Instalar kbctl
+### Instalar kbctl
 
 - [Link de la documentacion kbctl](https://k8s-docs.netlify.app/es/docs/tasks/tools/install-kubectl/) 
+- [Comandos kubectl](./kubectl.md)
 
-## Instalar k3d O Minikube
+###  Instalar k3d 
 
-### [Iniciar con K3D](./k3d.md)
+- [Iniciar con K3D](./k3d.md)
 
-### [Iniciar con minikube](./minikube.md)
+## Tools y practicas utiles
+
+1. [Primeros pasos Manifiestos kubernetes](./tools/1.%20manifest/README.MD)
+2. [Iniciar con Helm](./tools/2.%20helm/README.MD)
+3. [Implementa metodos de deploy con Argo Rollout](./tools/3.%20argo/README.MD)
+4. [Mas profecional con Istio + Keali](./tools/4.%20istio/README.MD)

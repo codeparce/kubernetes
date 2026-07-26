@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+
+metadata:
+  name: my-app-example
+  namespace: test
+
+spec:
+  replicas: 1
+  strategy:
+    blueGreen:
+      maxSurge: 1
+      maxUnavailable: 0
+      activeService: my-app-example-svc
+      previewService: my-app-example-pws-svc
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 30
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: my-app-example
+  template:
+    metadata:
+      labels:
+        app: my-app-example
+    spec:
+      containers:
+      - name: my-app-example
+        image: codeparce/blue-gren:blue # Cambiar a la blue 
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 300m
+            memory: 256Mi
