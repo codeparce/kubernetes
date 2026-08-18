@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "kiali-ingress"
+  namespace: istio-system
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`kiali.lab`)
+      kind: Rule
+      services:
+        - name: kiali
+          port: 20001
+  #tls: {}

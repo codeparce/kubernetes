@@ -55,4 +55,16 @@ helm install istio-ingress istio/gateway \
 
 kubectl apply -f samples/addons/jaeger.yaml
 kubectl apply -f samples/addons/kiali.yaml
+kubectl apply -f samples/addons/grafana.yaml
+kubectl apply -f samples/addons/prometheus.yaml
+kubectl apply -f samples/addons/loki.yaml
+```
+
+### Exponer svc con ingress
+
+Usar las plantillas de este mismo directorio para levantar los ingress que exponen la interface de kiali y grafana
+
+```bash
+./ingress.grafana.yaml
+./ingress.kiali.yaml
 ```

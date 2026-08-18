@@ -3,11 +3,11 @@ kind: Namespace
 metadata:
   name: test
 ---
-# Name app: my-app-example
+# Name app: blue-green-app
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: "my-app-example-ingress" 
+  name: "blue-green-app-ingress" 
   namespace: test
   labels:
     namespace: test
@@ -20,13 +20,13 @@ spec:
     - match: Host(`example.lab`) && PathPrefix(`/`)
       kind: Rule
       services:
-        - name: my-app-example-svc
+        - name: blue-green-app-svc
           port: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-example-svc
+  name: blue-green-app-svc
   namespace: test
 spec:
   ports:
@@ -38,7 +38,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-example-pws-svc
+  name: blue-green-app-pws-svc
   namespace: test
   labels:
     namespace: test

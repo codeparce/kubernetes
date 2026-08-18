@@ -9,7 +9,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`arg-rollout.lab`)
+    - match: Host(`argorollout.lab`)
       kind: Rule
       services:
         - name: argo-argo-rollouts-dashboard

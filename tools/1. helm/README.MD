@@ -2,6 +2,10 @@
 # Helm
 
 ```bash
+## Instalar con tu gestor de paquetes
+apt install helm
+brew install helm
+
 # comandos utiles
 helm repo list
 helm search repo prometheus
