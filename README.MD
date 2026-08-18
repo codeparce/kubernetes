@@ -22,6 +22,7 @@ sudo systemctl status ssh
 ### Instalar kbctl
 
 - [Link de la documentacion kbctl](https://k8s-docs.netlify.app/es/docs/tasks/tools/install-kubectl/) 
+- [Link de la documentacion kubecolor](https://kubecolor.github.io/setup/install/) 
 - [Comandos kubectl](./kubectl.md)
 
 ###  Instalar k3d 
