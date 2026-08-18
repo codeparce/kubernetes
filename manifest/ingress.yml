@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "argos-dashboard-ingress" 
+  namespace: examples
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`example.lab`)
+      kind: Rule
+      services:
+        - name: example-svc
+          port: 80
