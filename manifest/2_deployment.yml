@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: blue-green-deployment
+  name: blue-green-app-deployment
   namespace: examples
   labels:
-    name: blue-green
+    name: blue-green-app
   # Buenas practicas
   annotations:
     kubernetes.io/change-cause: "Aqui va la razon por la cual se hizo el cambio"
@@ -21,15 +21,15 @@ spec:
 
   selector:
     matchLabels:
-      app: blue-green
+      app: blue-green-app
   template:
     metadata:
       labels:
-        app: blue-green
+        app: blue-green-app
     spec:
       containers:
-        - name: blue-green
-          image: codeparce/blue-gren:gren
+        - name: blue-green-app
+          image: codeparce/blue-green-app:green
 
           ports:
             - containerPort: 80

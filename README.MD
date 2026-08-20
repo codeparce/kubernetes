@@ -23,6 +23,7 @@ sudo systemctl status ssh
 
 - [Link de la documentacion kbctl](https://k8s-docs.netlify.app/es/docs/tasks/tools/install-kubectl/) 
 - [Link de la documentacion kubecolor](https://kubecolor.github.io/setup/install/) 
+  - [alias para kubecolor](https://kubecolor.github.io/setup/shells/bash/)
 - [Comandos kubectl](./kubectl.md)
 
 ###  Instalar k3d 
@@ -31,7 +32,7 @@ sudo systemctl status ssh
 
 ## Tools y practicas utiles
 
-1. [Primeros pasos Manifiestos kubernetes](./tools/1.%20manifest/README.MD)
-2. [Iniciar con Helm](./tools/2.%20helm/README.MD)
-3. [Implementa metodos de deploy con Argo Rollout](./tools/3.%20argo/README.MD)
-4. [Mas profecional con Istio + Keali](./tools/4.%20istio/README.MD)
+1. [Primeros pasos Manifiestos kubernetes](./manifest/README.MD)
+2. [Iniciar con Helm](./tools/2.argo/README.MD)
+3. [Implementa metodos de deploy con Argo Rollout](./tools/3.argo/README.MD)
+4. [Mas profecional con Istio + Keali](./tools/4.istio/README.MD)

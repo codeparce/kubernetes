@@ -11,8 +11,15 @@ spec:
 
   #Minimo y maximo de replicas
   minReplicas: 1
-  maxReplicas: 3
+  maxReplicas: 5
 
+  # parametros para subir o bajar el autoscalado
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 10
+    scaleUp:
+      stabilizationWindowSeconds: 10
+    
   # metricas que va a evaluar  para escalar
   metrics:
   - type: Resource
@@ -20,9 +27,11 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50
+        averageUtilization: 60
 
-## para usar este manifest
-## debes de tener instalado en el cluster
-## Metrics server
+
+## para usar este manifest debes de tener instalado en el cluster, Metrics server
 ## kubectl top pods
+
+## test dentro del pod para generar prueba de stress
+## while true; do curl -s -o /dev/null http://localhost; done

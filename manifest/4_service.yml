@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue-green-app-svc
+  namespace: example
+  labels:
+    name: blue-green-app
+spec:
+  selector:
+    app: blue-green-app
+  ports:
+    - name: http     
+      port: 80
+      targetPort: 80
+
+  type: ClusterIP
+  # Tipo de servicio
+  # Node-port
+  # se usa para abrir un puerto en el nodo hacia tu app
+
+  # Loadbalancer
+  # Expone un servicio deriecto al publico (internet)
+  # si se usa en nubes, automaticamente crea el servicio en el provedor
+
+  # ExternalName
+  # es como un cname, crea un dns personaliza que apunta al dns de alguna aplicacion externo
