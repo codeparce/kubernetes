@@ -2,16 +2,17 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: blue-green-hpa
+  namespace: examples
 spec:
   # ¿A que va a escalar?
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: blue-green-deployment
+    name: blue-green-app-deployment
 
   #Minimo y maximo de replicas
-  minReplicas: 1
-  maxReplicas: 5
+  minReplicas: 2
+  maxReplicas: 3
 
   # parametros para subir o bajar el autoscalado
   behavior:

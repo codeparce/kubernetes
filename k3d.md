@@ -1,5 +1,7 @@
 # k3d
 
+- [Documentacion clave si usas podman](https://k3d.io/v5.8.1/usage/advanced/podman/)
+
 ## Instalar k3d
 
 ```bash 
@@ -13,7 +15,8 @@ k3d version
 
 ```bash 
 k3d cluster create test --servers 1 --servers-memory 3g --agents 1 --agents-memory 4g -p "80:80@loadbalancer" -p "443:443@loadbalancer" 
-  #-v /srv:/mnt@all
+  # para desabilitar trafik
+  # --k3s-arg "--disable=traefik@server:0"
   #--servers-cpu 1 --agents-cpu 2 \
 ```
 

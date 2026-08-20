@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "blue-green-app-ingress" 
+  namespace: examples
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`blue-green-app.lab`)
+      kind: Rule
+      services:
+        - name: blue-green-app-svc
+          port: 80

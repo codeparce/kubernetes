@@ -9,7 +9,7 @@ metadata:
   annotations:
     kubernetes.io/change-cause: "Aqui va la razon por la cual se hizo el cambio"
 spec:
-  replicas: 1
+  #replicas: 1
   # para levantar nuevas versiones sin dejar down time
   # Ej: va ir de dos en dos para actualizar todos los pods
   # por defecto siempre esta en 1
@@ -29,8 +29,8 @@ spec:
     spec:
       containers:
         - name: blue-green-app
-          image: codeparce/blue-green-app:green
-
+          image: codeparce/blue-green-app:blue
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           # limitar recursos para cada pod

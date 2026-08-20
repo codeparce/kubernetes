@@ -1,0 +1,21 @@
+## Depreacdo, pero muy usado en produccion
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blue-green-app-ingress
+  namespace: examples
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: blue-green-app.lab
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: blue-green-app-svc
+            port:
+              number: 80
