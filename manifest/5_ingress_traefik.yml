@@ -5,12 +5,23 @@ metadata:
   namespace: examples
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    # para certificados auto generados
+    cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
   entryPoints:
     - websecure
   routes:
     - match: Host(`blue-green-app.lab`)
+      observability:
+        accessLogs: true
+        metrics: true
+        tracing: true
       kind: Rule
       services:
         - name: blue-green-app-svc
           port: 80
+
+  tls:
+    domains:
+    - main: blue-green-app.lab
+    secretName: blue-green-app-tls

@@ -31,3 +31,31 @@ helm install traefik traefik/traefik \
   --namespace traefik \
   --values values.yaml
 ```
+
+
+# PLUS + Instalar Certmanager (Solo en la nube)
+
+- [Artifacts helm chart](https://artifacthub.io/packages/helm/cert-manager/cert-manager)
+
+- [Configurar el Issuer](https://cert-manager.io/docs/configuration/acme/) 
+
+```bash
+helm install \
+  cert-manager oci://quay.io/jetstack/charts/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.21.1 \
+  --set crds.enabled=true \
+  --set config.enableGatewayAPI=true
+```
+
+
+# Gateway API
+
+https://gateway-api.sigs.k8s.io/guides/getting-started/introduction/
+https://artifacthub.io/packages/helm/nicklasfrahm-gateway-api/gateway-api
+
+```bash
+kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.6.1/standard-install.yaml
+
+```

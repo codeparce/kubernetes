@@ -14,9 +14,9 @@ k3d version
 ### Crear el cluster con loadbalancer
 
 ```bash 
-k3d cluster create test --servers 1 --servers-memory 3g --agents 1 --agents-memory 4g -p "80:80@loadbalancer" -p "443:443@loadbalancer" 
+k3d cluster create test --servers 1 --servers-memory 3g --agents 1 --agents-memory 4g -p "80:80@loadbalancer" -p "443:443@loadbalancer" --k3s-arg "--disable=traefik@server:0"
   # para desabilitar trafik
-  # --k3s-arg "--disable=traefik@server:0"
+
   #--servers-cpu 1 --agents-cpu 2 \
 ```
 

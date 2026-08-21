@@ -1,0 +1,40 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: blue-green-app-gateway
+  namespace: examples
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: web
+      protocol: HTTPS
+      hostname: "blue-green-app.lab"
+      port: 8443
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: gw-blue-green-app-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: blue-green-app-route
+  namespace: examples
+spec:
+  parentRefs:
+    - name: blue-green-app-gateway
+  hostnames:
+    - "blue-green-app.lab"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: blue-green-app-svc
+          port: 80

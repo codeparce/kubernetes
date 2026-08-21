@@ -3,5 +3,5 @@ listen-address=127.0.0.1
 port=5353
 server=8.8.8.8
 server=1.1.1.1
-address=/lab/192.168.100.36
+address=/lab/ tu ip
 no-daemon

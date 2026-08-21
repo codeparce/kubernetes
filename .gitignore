@@ -5,3 +5,5 @@ nfs-share
 backup/
 
 .kube*
+
+dnsmasq.conf
